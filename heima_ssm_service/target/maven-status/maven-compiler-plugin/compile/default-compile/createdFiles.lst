@@ -1,0 +1,12 @@
+cn\itcast\ssm\service\impl\ProductServiceImpl.class
+cn\itcast\ssm\service\impl\SysLogServiceImpl.class
+cn\itcast\ssm\service\IProductService.class
+cn\itcast\ssm\service\impl\OrdersServiceImpl.class
+cn\itcast\ssm\service\impl\RoleServiceImpl.class
+cn\itcast\ssm\service\IRoleService.class
+cn\itcast\ssm\service\IUserService.class
+cn\itcast\ssm\service\ISysLogService.class
+cn\itcast\ssm\service\IPermissionService.class
+cn\itcast\ssm\service\impl\PermissionServiceImpl.class
+cn\itcast\ssm\service\impl\UserServiceImpl.class
+cn\itcast\ssm\service\IOrdersService.class
