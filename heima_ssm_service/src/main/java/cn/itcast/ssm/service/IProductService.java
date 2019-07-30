@@ -9,7 +9,7 @@ import java.util.List;
  * @create 2019-07-26-10:33
  */
 public interface IProductService {
-    public List<Product> findAll() throws Exception;
+    public List<Product> findAll(Integer page,Integer size) throws Exception;
 
     void save(Product product) throws Exception;
 
