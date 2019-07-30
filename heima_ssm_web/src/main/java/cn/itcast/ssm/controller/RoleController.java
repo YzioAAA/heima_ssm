@@ -3,6 +3,7 @@ package cn.itcast.ssm.controller;
 import cn.itcast.ssm.domain.Permission;
 import cn.itcast.ssm.domain.Role;
 import cn.itcast.ssm.service.IRoleService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class RoleController {
     @RequestMapping("/addPermissionToRole.do")
     public String addPermissionToRole(@RequestParam(name = "roleId",required = true) String roleId,@RequestParam(name = "ids",required = true) String[] permissionIds) throws Exception {
         roleService.addPermissionToRole(roleId,permissionIds);
-        return "redirect:findAll.do";
+        return "redirect:findAll.do?page=1&size=4";
     }
 
 
@@ -43,14 +44,15 @@ public class RoleController {
     @RequestMapping("/save.do")
     public String save(Role role) throws Exception {
         roleService.save(role);
-        return "redirect:findAll.do";
+        return "redirect:findAll.do?page=1&size=4";
     }
 
     @RequestMapping("findAll.do")
-    public ModelAndView findAll() throws Exception {
+    public ModelAndView findAll(@RequestParam(name = "page") Integer page,@RequestParam(name = "size") Integer size) throws Exception {
         ModelAndView mv = new ModelAndView();
-        List<Role> roleList = roleService.findAll();
-        mv.addObject("roleList",roleList);
+        List<Role> roleList = roleService.findAll(page,size);
+        PageInfo pageInfo = new PageInfo(roleList);
+        mv.addObject("pageInfo",pageInfo);
         mv.setViewName("role-list");
         return mv;
     }

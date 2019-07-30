@@ -4,6 +4,7 @@ import cn.itcast.ssm.dao.IRoleDao;
 import cn.itcast.ssm.domain.Permission;
 import cn.itcast.ssm.domain.Role;
 import cn.itcast.ssm.service.IRoleService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,8 @@ public class RoleServiceImpl implements IRoleService {
     private IRoleDao roleDao;
 
     @Override
-    public List<Role> findAll() throws Exception {
+    public List<Role> findAll(Integer page,Integer size) throws Exception {
+        PageHelper.startPage(page,size);
         return roleDao.findAll() ;
     }
 
