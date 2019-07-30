@@ -4,6 +4,7 @@ import cn.itcast.ssm.dao.IUserDao;
 import cn.itcast.ssm.domain.Role;
 import cn.itcast.ssm.domain.UserInfo;
 import cn.itcast.ssm.service.IUserService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -51,7 +52,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<UserInfo> findAll() throws Exception {
+    public List<UserInfo> findAll(Integer page,Integer size) throws Exception {
+        PageHelper.startPage(page,size);
         return userDao.findAll();
     }
 

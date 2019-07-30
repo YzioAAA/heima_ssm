@@ -3,6 +3,7 @@ package cn.itcast.ssm.controller;
 import cn.itcast.ssm.domain.Role;
 import cn.itcast.ssm.domain.UserInfo;
 import cn.itcast.ssm.service.IUserService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class UserController {
     @RequestMapping("/addRoleToUser.do")
     public String addRoleToUser(@RequestParam(name = "userId",required = true) String userId, @RequestParam(name = "ids",required = true) String[] roleIds) throws Exception {
         userService.addRoleToUser(userId,roleIds);
-        return "redirect:findAll.do";
+        return "redirect:findAll.do?page=1&size=4";
     }
 
     @RequestMapping("/findUserByIdAndAllRole.do")
@@ -57,10 +58,11 @@ public class UserController {
 
     @RequestMapping("/findAll.do")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ModelAndView findAll() throws Exception {
+    public ModelAndView findAll(@RequestParam(name = "page") Integer page,@RequestParam(name = "size") Integer size) throws Exception {
         ModelAndView mv = new ModelAndView();
-        List<UserInfo> userList = userService.findAll();
-        mv.addObject("userList",userList);
+        List<UserInfo> userList = userService.findAll(page,size);
+        PageInfo pageInfo = new PageInfo(userList);
+        mv.addObject("pageInfo",pageInfo);
         mv.setViewName("user-list");
         return mv;
     }
@@ -69,7 +71,7 @@ public class UserController {
     @PreAuthorize("authentication.principal.username == 'tom'")
     public String save(UserInfo userInfo) throws Exception {
         userService.save(userInfo);
-        return "redirect:findAll.do";
+        return "redirect:findAll.do?page=1&size=4";
 
     }
 }

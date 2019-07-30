@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface IUserService extends UserDetailsService {
 
-    List<UserInfo> findAll() throws Exception;
+    List<UserInfo> findAll(Integer page,Integer size) throws Exception;
 
     void save(UserInfo userInfo) throws Exception;
 
