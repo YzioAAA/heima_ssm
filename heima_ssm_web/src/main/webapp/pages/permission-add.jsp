@@ -84,7 +84,7 @@
 			<ol class="breadcrumb">
 				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
-				<li><a href="${pageContext.request.contextPath}/permission/findAll.do">权限管理</a></li>
+				<li><a href="${pageContext.request.contextPath}/permission/findAll.do?page=1&size=4">权限管理</a></li>
 				<li class="active">权限表单</li>
 			</ol>
 			</section>
